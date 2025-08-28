@@ -1,0 +1,127 @@
+{
+  "lifeFlasks": [
+    {
+      "id": "lesser_life_flask",
+      "name": "Lesser Life Flask",
+      "type": "Life Flask",
+      "requiredLevel": 1,
+      "recovery": 50,
+      "duration": 3,
+      "chargesPerUse": 10,
+      "maxCharges": 60,
+      "imageUrl": "images/flasks/lesser-life-flask.webp",
+      "description": "Recovers 50 Life over 3 Second"
+    },
+    {
+      "id": "medium_life_flask",
+      "name": "Medium Life Flask",
+      "type": "Life Flask",
+      "requiredLevel": 4,
+      "recovery": 90,
+      "duration": 5,
+      "chargesPerUse": 10,
+      "maxCharges": 65,
+      "imageUrl": "images/flasks/medium-life-flask.webp",
+      "description": "Recovers 90 Life over 5 Second"
+    },
+    {
+      "id": "greater_life_flask",
+      "name": "Greater Life Flask",
+      "type": "Life Flask",
+      "requiredLevel": 10,
+      "recovery": 150,
+      "duration": 4,
+      "chargesPerUse": 10,
+      "maxCharges": 70,
+      "imageUrl": "images/flasks/greater-life-flask.webp",
+      "description": "Recovers 150 Life over 4 Second"
+    },
+    {
+      "id": "grand_life_flask",
+      "name": "Grand Life Flask",
+      "type": "Life Flask",
+      "requiredLevel": 16,
+      "recovery": 260,
+      "duration": 5,
+      "chargesPerUse": 10,
+      "maxCharges": 75,
+      "imageUrl": "images/flasks/grand-life-flask.webp",
+      "description": "Recovers 260 Life over 5 Second"
+    },
+    {
+      "id": "giant_life_flask",
+      "name": "Giant Life Flask",
+      "type": "Life Flask",
+      "requiredLevel": 23,
+      "recovery": 340,
+      "duration": 4,
+      "chargesPerUse": 10,
+      "maxCharges": 75,
+      "imageUrl": "images/flasks/giant-life-flask.webp",
+      "description": "Recovers 340 Life over 4 Second"
+    },
+    {
+      "id": "colossal_life_flask",
+      "name": "Colossal Life Flask",
+      "type": "Life Flask",
+      "requiredLevel": 30,
+      "recovery": 450,
+      "duration": 4,
+      "chargesPerUse": 10,
+      "maxCharges": 75,
+      "imageUrl": "images/flasks/colossal-life-flask.webp",
+      "description": "Recovers 450 Life over 4 Second"
+    },
+    {
+      "id": "gargantuan_life_flask",
+      "name": "Gargantuan Life Flask",
+      "type": "Life Flask",
+      "requiredLevel": 40,
+      "recovery": 710,
+      "duration": 5,
+      "chargesPerUse": 10,
+      "maxCharges": 75,
+      "imageUrl": "images/flasks/gargantuan-life-flask.webp",
+      "description": "Recovers 710 Life over 5 Second"
+    },
+    {
+      "id": "transcendent_life_flask",
+      "name": "Transcendent Life Flask",
+      "type": "Life Flask",
+      "requiredLevel": 50,
+      "recovery": 840,
+      "duration": 4,
+      "chargesPerUse": 10,
+      "maxCharges": 75,
+      "imageUrl": "images/flasks/transcendent-life-flask.webp",
+      "description": "Recovers 840 Life over 4 Second"
+    },
+    {
+      "id": "ultimate_life_flask",
+      "name": "Ultimate Life Flask",
+      "type": "Life Flask",
+      "requiredLevel": 60,
+      "recovery": 920,
+      "duration": 3,
+      "chargesPerUse": 10,
+      "maxCharges": 75,
+      "imageUrl": "images/flasks/ultimate-life-flask.webp",
+      "description": "Recovers 920 Life over 3 Second"
+    }
+  ],
+  "uniqueFlasks": [
+    {
+      "id": "olroths_resolve",
+      "name": "Olroth's Resolve",
+      "type": "Ultimate Life Flask",
+      "requiredLevel": 60,
+      "recovery": "Instant Recovery",
+      "duration": 0,
+      "chargesPerUse": 10,
+      "maxCharges": 75,
+      "imageUrl": "images/flasks/olroths-resolve.webp",
+      "description": "Instant Recovery\n(100–150)% increased Charges per use\nExcess Life Recovery added as Guard for 10 seconds",
+      "unique": true
+    }
+  ]
+}
