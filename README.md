@@ -9,14 +9,11 @@ A real-time utility for Path of Exile 2 that automatically displays map layouts,
 **No Python installation required!**
 
 1. **Download from [GitHub Releases](https://github.com/derek-etherton/PoE2-Map-Layout-Utility/releases)**
-2. **Choose your version:**
-   - **`PoE_Campaign_Layouts.exe`** - Overlay mode (single monitor)
-   - **`PoE_Campaign_Layouts_Windowed.exe`** - Windowed mode (dual monitor)
+2. **Download `poe_campaign_layouts.exe`**
 3. **Run the executable** - that's it!
 
-> 💡 **Which version should I choose?**
-> - **Single monitor?** Use the overlay version - it sits on top of your game
-> - **Dual monitors?** Use the windowed version - better for viewing on a second screen
+> 💡 **Perfect for both single and dual monitor setups!**
+> The windowed application is flexible and works great whether you have one monitor or multiple monitors.
 
 ## 🌟 Features
 
@@ -38,27 +35,22 @@ A real-time utility for Path of Exile 2 that automatically displays map layouts,
 - **Smart updates** - Weapon recommendations refresh when you level up
 
 ### 🎮 **User Experience**
-- **Borderless overlay** - Clean, minimal interface that doesn't interfere with gameplay
-- **System tray integration** - Minimize to tray and control via right-click menu
+- **Clean windowed interface** - Intuitive design that's easy to use alongside your game
+- **Native file dialog** - Easy log file selection with built-in file browser
 - **Drag & resize** - Fully customizable window positioning and sizing
 - **Level detection** - Automatically detects your character level from game logs
 - **Settings persistence** - Remembers your preferences between sessions
 
 ## 🚀 **Running the Application**
 
-After downloading from the releases page, simply double-click the executable!
+After downloading from the releases page, simply double-click `poe_campaign_layouts.exe`!
 
-### 🎯 **Overlay Mode** (`PoE_Campaign_Layouts.exe`)
-- Borderless overlay that sits on top of Path of Exile 2
-- Perfect for single monitor setups
-- System tray integration - right-click the tray icon to access settings
-- Minimal interference with gameplay
-
-### 🪟 **Windowed Mode** (`PoE_Campaign_Layouts_Windowed.exe`)
-- Standalone window application
-- Great for dual monitor setups or if you prefer a separate window
+### 🪟 **Windowed Application**
+- Standalone windowed application that works great on any setup
+- Perfect for both single and dual monitor configurations
 - Responsive UI that scales with window size
-- Settings accessible directly in the main window
+- Settings accessible directly in the main window via the collapsible Settings section
+- Drag and resize the window to fit your preference
 
 ## ⚙️ **First-Time Setup**
 
@@ -84,8 +76,7 @@ After downloading from the releases page, simply double-click the executable!
    - Settings are remembered for next time!
 
 ### **Accessing Settings Later:**
-- **Overlay Mode**: Right-click the system tray icon → Settings
-- **Windowed Mode**: Click to expand the "Settings" section in the main window
+- Click to expand the "Settings" section in the main window
 
 ### **Advanced Settings**
 
@@ -115,7 +106,7 @@ Searches for level-up messages in the format:
 ```
 
 ### Flask & Weapon Data
-- Flask and weapon information stored in JSON files (`public/data/`)
+- Flask and weapon information stored in JSON files (`data/`)
 - Automatically finds best items based on level requirements
 - Updates display when character levels up
 
@@ -178,39 +169,39 @@ Want to contribute or run from source? Here's the full development setup:
 
 #### **Running from Source**
 
-- **Overlay Mode**: `python poe_campaign_layouts.py`
-- **Windowed Mode**: `python poe_campaign_layouts_windowed.py`
+```bash
+python poe_campaign_layouts.py
+```
 
 #### **Building Executables**
 
-Use the provided build scripts:
+Use the provided build script:
 
 ```bash
 # Windows Batch
 build.bat
-
-# PowerShell (recommended)
-.\build.ps1
 ```
 
-Both scripts will:
+The script will:
 - Check and install PyInstaller if needed
 - Clean previous builds
-- Build both overlay and windowed mode executables
-- Display file sizes and completion status
+- Build the executable as `poe_campaign_layouts.exe`
+- Display file size and completion status
 
 #### **Project Structure**
 ```
 PoE2-Map-Layout-Utility/
-├── maps/                            # Your map images
+├── data/                            # Game data and images
+│   ├── maps/                        # Your map images organized by act/zone
+│   ├── flasks.json                  # Flask database
+│   └── weapons.json                 # Weapon database
 ├── images/flasks/                   # Flask images
-├── public/data/                     # Game data (flasks.json, weapons.json)
-├── poe_campaign_layouts.py          # Overlay mode source
-├── poe_campaign_layouts_windowed.py # Windowed mode source
+├── poe_campaign_layouts.py          # Main application source
 ├── flask_utils.py                   # Flask logic
 ├── weapon_utils.py                  # Weapon logic
-├── build.bat / build.ps1            # Build scripts
-└── dist/                            # Generated executables
+├── path_utils.py                    # Resource path utilities
+├── build.bat                        # Build script
+└── dist/                            # Generated executable
 ```
 
 #### **Contributing Ideas**
