@@ -1,6 +1,9 @@
 {
-    "regex": "\"increased rar|move\"",
-    "player_level": 60,
-    "override_player_level": false,
-    "weapon_base_type": "Crossbow"
+  "regex": "\"increased rar|move\"",
+  "player_level": 2,
+  "override_player_level": false,
+  "weapon_base_type": "Crossbow",
+  "log_path": "D:\\Program Files (x86)\\Grinding Gear Games\\logs\\Client.txt",
+  "weapon_type": "Crossbow",
+  "level": 2
 }
