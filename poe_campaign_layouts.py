@@ -91,7 +91,7 @@ class PoEMapsViewerFinal:
                 settings = json.load(f)
                 # Set defaults for any missing keys
                 defaults = {
-                    "log_path": "",
+                    "log_path": os.path.expanduser("~\\Documents\\My Games\\Path of Exile 2\\Logs\\Client.txt"),
                     "weapon_type": "", 
                     "level": 1,
                     "regex": '"increased rar|move"',
@@ -579,20 +579,76 @@ class PoEMapsViewerFinal:
         self.resize_timer = None
 
     def browse_log_file(self):
-        """Browse for log file (placeholder - would need file dialog)"""
-        print("Browse functionality would open a file dialog here")
-        # Check original path first, then common location
-        original_path = r"D:\Program Files (x86)\Grinding Gear Games\logs\Client.txt"
-        common_path = os.path.expanduser("~\\Documents\\My Games\\Path of Exile 2\\Logs\\Client.txt")
-        
-        if os.path.exists(original_path):
-            dpg.set_value("log_path_input", original_path)
-            print(f"Found PoE2 log at original location: {original_path}")
-        elif os.path.exists(common_path):
-            dpg.set_value("log_path_input", common_path)
-            print(f"Found PoE2 log at common location: {common_path}")
-        else:
-            print("PoE2 log location not found. Please set manually.")
+        """Open native file dialog to select log file"""
+        try:
+            import tkinter as tk
+            from tkinter import filedialog
+            
+            # Create a temporary root window (hidden)
+            root = tk.Tk()
+            root.withdraw()  # Hide the main window
+            root.attributes('-topmost', True)  # Bring dialog to front
+            
+            # Determine initial directory - prefer PoE2 Logs folder
+            initial_dir = os.path.expanduser("~\\Documents\\My Games\\Path of Exile 2\\Logs")
+            if not os.path.exists(initial_dir):
+                # Fallback to My Games
+                initial_dir = os.path.expanduser("~\\Documents\\My Games")
+                if not os.path.exists(initial_dir):
+                    # Final fallback to Documents
+                    initial_dir = os.path.expanduser("~\\Documents")
+            
+            # Open file dialog
+            file_path = filedialog.askopenfilename(
+                title="Select PoE2 Client.txt Log File",
+                initialdir=initial_dir,
+                filetypes=[
+                    ("Log files", "*.txt"),
+                    ("All files", "*.*")
+                ]
+            )
+            
+            # Clean up the temporary root window
+            root.destroy()
+            
+            if file_path:
+                # Update the input field with selected path
+                dpg.set_value("log_path_input", file_path)
+                print(f"Selected log file: {file_path}")
+            else:
+                print("File selection cancelled")
+                
+        except ImportError:
+            print("tkinter not available - using fallback method")
+            self.browse_log_file_fallback()
+        except Exception as e:
+            print(f"Error opening file dialog: {e}")
+            self.browse_log_file_fallback()
+    
+    def browse_log_file_fallback(self):
+        """Fallback method using explorer if tkinter fails"""
+        try:
+            # Open file explorer to the default PoE2 logs location if it exists
+            default_logs_dir = os.path.expanduser("~\\Documents\\My Games\\Path of Exile 2\\Logs")
+            if os.path.exists(default_logs_dir):
+                subprocess.run(["explorer", default_logs_dir], check=False)
+                print(f"Opened explorer to: {default_logs_dir}")
+            else:
+                # Fallback to Documents/My Games folder
+                my_games_dir = os.path.expanduser("~\\Documents\\My Games")
+                if os.path.exists(my_games_dir):
+                    subprocess.run(["explorer", my_games_dir], check=False)
+                    print(f"Opened explorer to: {my_games_dir}")
+                else:
+                    # Final fallback to Documents
+                    documents_dir = os.path.expanduser("~\\Documents")
+                    subprocess.run(["explorer", documents_dir], check=False)
+                    print(f"Opened explorer to: {documents_dir}")
+            
+            print("Navigate to your PoE2 Client.txt log file and copy the full path to the input field.")
+            
+        except Exception as e:
+            print(f"Error opening file explorer: {e}")
     
     def save_all_settings(self):
         """Save all settings from UI"""

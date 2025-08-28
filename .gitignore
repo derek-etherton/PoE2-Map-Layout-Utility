@@ -141,3 +141,6 @@ Thumbs.db
 
 # But allow notes.txt files in maps subdirectories
 !maps/**/notes.txt
+
+# App files
+settings.json

@@ -67,7 +67,7 @@ After downloading from the releases page, simply double-click the executable!
 ### 1. **Set Your PoE2 Log File Path**
    - Click the "Browse" button
    - Navigate to your PoE2 log file (usually at one of these locations):
-     - `D:\Program Files (x86)\Grinding Gear Games\logs\Client.txt`
+     - `C:\Program Files (x86)\Grinding Gear Games\logs\Client.txt`
      - `Documents\My Games\Path of Exile 2\Logs\Client.txt`
    - The app will try to find it automatically, but you can browse if needed
 
