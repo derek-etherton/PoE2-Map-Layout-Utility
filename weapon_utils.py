@@ -1,14 +1,15 @@
 import json
 import os
+from path_utils import get_data_file_path
 
 def load_weapon_data():
     """Load weapon data from JSON file."""
-    weapon_file = os.path.join(os.path.dirname(__file__), 'public', 'data', 'weapons.json')
+    weapon_file = get_data_file_path('weapons.json')
     try:
         with open(weapon_file, 'r') as f:
             return json.load(f)
     except Exception as e:
-        print(f"Error loading weapon data: {e}")
+        print(f"Error loading weapon data from {weapon_file}: {e}")
         return {"bows": [], "crossbows": [], "quarterstaves": [], "spears": [], "oneHandMaces": [], "twoHandMaces": []}
 
 def get_weapon_type_key(weapon_type):

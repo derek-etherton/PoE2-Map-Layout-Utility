@@ -1,15 +1,16 @@
 import json
 import os
 from PIL import Image
+from path_utils import get_data_file_path, get_image_file_path
 
 def load_flask_data():
     """Load flask data from JSON file."""
-    flask_file = os.path.join(os.path.dirname(__file__), 'public', 'data', 'flasks.json')
+    flask_file = get_data_file_path('flasks.json')
     try:
         with open(flask_file, 'r') as f:
             return json.load(f)
     except Exception as e:
-        print(f"Error loading flask data: {e}")
+        print(f"Error loading flask data from {flask_file}: {e}")
         return {"lifeFlasks": [], "uniqueFlasks": []}
 
 def get_best_flask_for_level(player_level):
@@ -37,8 +38,8 @@ def get_flask_image(flask_info):
         return None
     
     try:
-        # Get image path relative to project root
-        image_path = os.path.join(os.path.dirname(__file__), flask_info["imageUrl"])
+        # Get image path using path utility
+        image_path = get_image_file_path(flask_info["imageUrl"])
         
         if os.path.exists(image_path):
             return Image.open(image_path)

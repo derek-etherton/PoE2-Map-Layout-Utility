@@ -20,16 +20,27 @@ if %ERRORLEVEL% neq 0 (
 REM Clean previous builds
 echo Cleaning previous builds...
 if exist "build" rmdir /s /q "build"
+
+REM Backup settings.json if it exists
+set "SETTINGS_BACKUP="
+if exist "dist\settings.json" (
+    echo Backing up existing settings.json...
+    copy "dist\settings.json" "settings_backup.json" >nul
+    set "SETTINGS_BACKUP=1"
+)
+
 if exist "dist" rmdir /s /q "dist"
 if exist "*.spec" del /q "*.spec"
 
 echo.
-echo Building Overlay Mode executable...
+echo Building PoE Campaign Layouts executable...
 echo ===================================
 python -m PyInstaller ^
     --onefile ^
     --windowed ^
-    --name "PoE_Campaign_Layouts" ^
+    --name "poe_campaign_layouts" ^
+    --add-data "data;data" ^
+    --add-data "images;images" ^
     --exclude-module numpy ^
     --exclude-module matplotlib ^
     --exclude-module scipy ^
@@ -39,28 +50,7 @@ python -m PyInstaller ^
     poe_campaign_layouts.py
 
 if %ERRORLEVEL% neq 0 (
-    echo Failed to build overlay mode executable
-    pause
-    exit /b 1
-)
-
-echo.
-echo Building Windowed Mode executable...
-echo ===================================
-python -m PyInstaller ^
-    --onefile ^
-    --windowed ^
-    --name "PoE_Campaign_Layouts_Windowed" ^
-    --exclude-module numpy ^
-    --exclude-module matplotlib ^
-    --exclude-module scipy ^
-    --exclude-module pandas ^
-    --exclude-module tensorflow ^
-    --exclude-module torch ^
-    poe_campaign_layouts_windowed.py
-
-if %ERRORLEVEL% neq 0 (
-    echo Failed to build windowed mode executable
+    echo Failed to build executable
     pause
     exit /b 1
 )
@@ -71,21 +61,21 @@ echo  Build Complete!
 echo =====================================
 echo.
 
-REM Display file sizes
-if exist "dist\PoE_Campaign_Layouts.exe" (
-    for %%A in ("dist\PoE_Campaign_Layouts.exe") do (
+REM Display file size
+if exist "dist\poe_campaign_layouts.exe" (
+    for %%A in ("dist\poe_campaign_layouts.exe") do (
         set size=%%~zA
         call :FormatSize !size! formattedSize
-        echo Overlay Mode: PoE_Campaign_Layouts.exe (!formattedSize!)
+        echo PoE Campaign Layouts: poe_campaign_layouts.exe (!formattedSize!)
     )
 )
 
-if exist "dist\PoE_Campaign_Layouts_Windowed.exe" (
-    for %%A in ("dist\PoE_Campaign_Layouts_Windowed.exe") do (
-        set size=%%~zA
-        call :FormatSize !size! formattedSize
-        echo Windowed Mode: PoE_Campaign_Layouts_Windowed.exe (!formattedSize!)
-    )
+REM Restore settings.json if we backed it up
+if defined SETTINGS_BACKUP (
+    echo Restoring settings.json...
+    copy "settings_backup.json" "dist\settings.json" >nul
+    del "settings_backup.json" >nul
+    echo ✓ Previous settings preserved
 )
 
 echo.
