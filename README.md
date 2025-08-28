@@ -1,8 +1,22 @@
-# PoE2 Maps Viewer
+# PoE2 Campaign Layouts
 
-A real-time utility for Path of Exile 2 that automatically displays map layouts, optimal flasks, and best weapons based on your current zone and character level. Choose between an overlay mode for single-monitor setups or a windowed mode for dual-monitor setups.
+A real-time utility for Path of Exile 2 that automatically displays map layouts, optimal flasks, and best weapons based on your current zone and character level.
 
-![PoE2 Maps Viewer](https://img.shields.io/badge/Game-Path%20of%20Exile%202-red) ![Python](https://img.shields.io/badge/Python-3.7+-blue) ![License](https://img.shields.io/badge/License-MIT-green)
+![PoE2 Maps Viewer](https://img.shields.io/badge/Game-Path%20of%20Exile%202-red) ![License](https://img.shields.io/badge/License-MIT-green)
+
+## 📦 **Download & Run** (Recommended)
+
+**No Python installation required!**
+
+1. **Download from [GitHub Releases](https://github.com/derek-etherton/PoE2-Map-Layout-Utility/releases)**
+2. **Choose your version:**
+   - **`PoE_Campaign_Layouts.exe`** - Overlay mode (single monitor)
+   - **`PoE_Campaign_Layouts_Windowed.exe`** - Windowed mode (dual monitor)
+3. **Run the executable** - that's it!
+
+> 💡 **Which version should I choose?**
+> - **Single monitor?** Use the overlay version - it sits on top of your game
+> - **Dual monitors?** Use the windowed version - better for viewing on a second screen
 
 ## 🌟 Features
 
@@ -30,135 +44,61 @@ A real-time utility for Path of Exile 2 that automatically displays map layouts,
 - **Level detection** - Automatically detects your character level from game logs
 - **Settings persistence** - Remembers your preferences between sessions
 
-## 🚀 Quick Start
+## 🚀 **Running the Application**
 
-### Prerequisites
-- Python 3.7+
-- Path of Exile 2 installed
-- Required Python packages (install via `pip install -r requirements.txt`)
+After downloading from the releases page, simply double-click the executable!
 
-### Installation
+### 🎯 **Overlay Mode** (`PoE_Campaign_Layouts.exe`)
+- Borderless overlay that sits on top of Path of Exile 2
+- Perfect for single monitor setups
+- System tray integration - right-click the tray icon to access settings
+- Minimal interference with gameplay
 
-1. **Clone or download this repository**
-   ```bash
-   git clone https://github.com/yourusername/poe-maps.git
-   cd poe-maps
-   ```
+### 🪟 **Windowed Mode** (`PoE_Campaign_Layouts_Windowed.exe`)
+- Standalone window application
+- Great for dual monitor setups or if you prefer a separate window
+- Responsive UI that scales with window size
+- Settings accessible directly in the main window
 
-2. **Install dependencies**
-   ```bash
-   pip install tkinter pillow pystray
-   ```
+## ⚙️ **First-Time Setup**
 
-3. **Set up your maps directory**
-   - Create a `maps/` folder in the project root
-   - Organize by acts: `maps/Act1/`, `maps/Act2/`, etc.
-   - Place zone folders inside: `maps/Act1/1_Clearfell/`, `maps/Act1/2_Mud_Burrow/`
-   - Add map images (PNG/JPG) to each zone folder
+**When you first run the app, you'll need to configure a few basic settings:**
 
-4. **Configure log file path** (if different from default)
-   - Open `poe_campaign_layouts.py`
-   - Modify line 20: `self.log_file_path = r"your\path\to\Client.txt"`
-   - **Note**: Not needed if using executables - configure via Settings window
-
-### Running the Application
-
-**Choose the version that works best for your setup:**
-
-#### 🎯 **Overlay Mode** (Single Monitor)
-```bash
-python poe_campaign_layouts.py
-```
-- **Best for**: Single monitor setups
-- **Features**: Borderless overlay that renders on top of PoE2
-- **Benefits**: System tray integration, always-on-top, minimal interference with gameplay
-
-#### 🪟 **Windowed Mode** (Dual Monitor)
-```bash
-python poe_campaign_layouts_windowed.py
-```
-- **Best for**: Dual monitor setups or when you prefer a standalone window
-- **Features**: Full-featured windowed application with responsive UI
-- **Benefits**: Larger display area, better for detailed map viewing, resizable interface
-
-#### 📦 **Executable Releases** (No Python Required)
-
-Download pre-built executables from the [GitHub Releases](https://github.com/derek-etherton/PoE2-Map-Layout-Utility/releases) page:
-- **`PoE_Campaign_Layouts.exe`** - Overlay mode executable
-- **`PoE_Campaign_Layouts_Windowed.exe`** - Windowed mode executable
-
-Simply download and run - no Python installation needed!
-
-#### Option 3: Batch File
-```bash
-./run_viewer.bat
-```
-
-## ⚙️ Configuration
-
-### First-Time Setup
-
-**For both versions, you'll need to configure these settings on first launch:**
-
-1. **Set Log Path**:
-   - Click "Browse" to locate your PoE2 log file
-   - Common locations:
+### 1. **Set Your PoE2 Log File Path**
+   - Click the "Browse" button
+   - Navigate to your PoE2 log file (usually at one of these locations):
      - `D:\Program Files (x86)\Grinding Gear Games\logs\Client.txt`
-     - `~\Documents\My Games\Path of Exile 2\Logs\Client.txt`
+     - `Documents\My Games\Path of Exile 2\Logs\Client.txt`
+   - The app will try to find it automatically, but you can browse if needed
 
-2. **Select Weapon Type**:
-   - Choose your primary weapon type from the dropdown
-   - Options: Bow, Crossbow, Quarter Staff, Spear, One Hand Mace, Two Hand Mace
+### 2. **Choose Your Weapon Type** (optional but recommended)
+   - Select from: Bow, Crossbow, Quarter Staff, Spear, One Hand Mace, Two Hand Mace
+   - This lets the app show you the best weapons for your character level
 
-3. **Set Your Level** (optional):
-   - Enter your current character level
-   - The app will auto-detect level changes from logs once running
+### 3. **Set Your Character Level** (optional)
+   - Enter your current level
+   - The app will auto-detect when you level up from the game logs
 
-4. **Save Settings**:
-   - Click "Save Settings" to persist your configuration
-   - Settings are automatically loaded on subsequent launches
+### 4. **Save Settings**
+   - Click "Save Settings" to save your configuration
+   - Settings are remembered for next time!
 
-### Settings Window
+### **Accessing Settings Later:**
+- **Overlay Mode**: Right-click the system tray icon → Settings
+- **Windowed Mode**: Click to expand the "Settings" section in the main window
 
-**Overlay Mode**: Access via system tray right-click → Settings
-**Windowed Mode**: Expand the "Settings" section in the main window
+### **Advanced Settings**
 
 #### **Regex Filter**
 - Custom search pattern for in-game item filtering
-- Default: `"increased rar"|move`
-- Uses regex syntax - pipe `|` for OR operations
+- Default: `"increased rar"|move` 
+- Uses regex syntax - pipe `|` means OR
+- Copy these patterns to your in-game item filter
 
-#### **Player Level Override**
+#### **Level Override**
 - Check "Override player level" to manually set your level
-- Useful if auto-detection isn't working
-- Leave unchecked to use automatic level detection from game logs
-
-#### **Weapon Base Type**
-- Select your primary weapon type from dropdown
-- Choose from: Bow, Crossbow, Quarter Staff, Spear, One Hand Mace, Two Hand Mace
-- Leave empty to hide weapon tracking
-
-### Directory Structure
-```
-poe-maps/
-├── maps/                    # Your map images organized by act/zone
-│   ├── Act1/
-│   │   ├── 1_Clearfell/
-│   │   │   ├── clearfell_map1.png
-│   │   │   └── clearfell_map2.png
-│   │   └── 2_Mud_Burrow/
-│   └── Act2/
-├── images/                  # Flask images
-├── public/data/            # Game data files
-│   ├── flasks.json
-│   └── weapons.json
-├── settings.json                    # Your saved preferences
-├── poe_campaign_layouts.py          # Overlay mode (single monitor)
-├── poe_campaign_layouts_windowed.py # Windowed mode (dual monitor)
-├── dist/                            # Pre-built executables
-│   ├── PoE_Campaign_Layouts.exe     # Overlay mode executable
-│   └── PoE_Campaign_Layouts_Windowed.exe # Windowed mode executable
-```
+- Useful if the app can't detect your level automatically
+- Leave unchecked for automatic level detection
 
 ## 🎯 How It Works
 
@@ -202,22 +142,54 @@ Searches for level-up messages in the format:
 - Drag anywhere on the window to reposition
 - Settings are remembered between sessions
 
-### Log File Locations
+### **PoE2 Log File Locations**
 - **Default**: `D:\Program Files (x86)\Grinding Gear Games\logs\Client.txt`
-- **Steam**: Usually in the same location, but may vary
-- **Custom install**: Update the path in `poe_maps_viewer.py` line 20
+- **Steam**: Usually the same location
+- **Documents**: `Documents\My Games\Path of Exile 2\Logs\Client.txt`
 
-## 🛠️ Building Executables
+## 🤝 **Contributing & Development**
 
-If you want to build the executables yourself, use the provided build scripts:
+### **For Contributors & Developers**
 
-### Windows Batch Script
+Want to contribute or run from source? Here's the full development setup:
+
+#### **Prerequisites**
+- Python 3.7+
+- Path of Exile 2 installed
+
+#### **Installation**
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/derek-etherton/PoE2-Map-Layout-Utility.git
+   cd PoE2-Map-Layout-Utility
+   ```
+
+2. **Install Python dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Set up your maps directory**
+   - Create a `maps/` folder in the project root
+   - Organize by acts: `maps/Act1/`, `maps/Act2/`, etc.
+   - Place zone folders inside: `maps/Act1/1_Clearfell/`, `maps/Act1/2_Mud_Burrow/`
+   - Add map images (PNG/JPG) to each zone folder
+
+#### **Running from Source**
+
+- **Overlay Mode**: `python poe_campaign_layouts.py`
+- **Windowed Mode**: `python poe_campaign_layouts_windowed.py`
+
+#### **Building Executables**
+
+Use the provided build scripts:
+
 ```bash
+# Windows Batch
 build.bat
-```
 
-### PowerShell Script
-```powershell
+# PowerShell (recommended)
 .\build.ps1
 ```
 
@@ -227,16 +199,27 @@ Both scripts will:
 - Build both overlay and windowed mode executables
 - Display file sizes and completion status
 
-Executables will be created in the `dist/` folder.
+#### **Project Structure**
+```
+PoE2-Map-Layout-Utility/
+├── maps/                            # Your map images
+├── images/flasks/                   # Flask images
+├── public/data/                     # Game data (flasks.json, weapons.json)
+├── poe_campaign_layouts.py          # Overlay mode source
+├── poe_campaign_layouts_windowed.py # Windowed mode source
+├── flask_utils.py                   # Flask logic
+├── weapon_utils.py                  # Weapon logic
+├── build.bat / build.ps1            # Build scripts
+└── dist/                            # Generated executables
+```
 
-## 🤝 Contributing
-
-Feel free to contribute improvements! Some ideas:
+#### **Contributing Ideas**
 - Add support for more flask types (mana, hybrid)
 - Expand weapon database
 - Add zone-specific tips or strategies
 - Improve map organization tools
 - Add automatic map downloads
+- UI/UX improvements
 
 ## 📄 License
 
