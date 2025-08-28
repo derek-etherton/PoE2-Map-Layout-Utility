@@ -521,7 +521,7 @@ class PoEMapsViewerFinal:
             # Don't clear or change anything - keep previous map displayed
 
     def calculate_map_size(self, map_data, num_maps):
-        """Calculate maximum map size using nearly 100% of available space"""
+        """Calculate maximum map size while ensuring notes remain visible"""
         try:
             # Get current viewport dimensions when needed
             viewport_width = dpg.get_viewport_client_width()
@@ -531,16 +531,17 @@ class PoEMapsViewerFinal:
             viewport_width = 1200
             viewport_height = 800
         
-        # Calculate maximum available space - ultra aggressive now
+        # Calculate maximum available space
         # Account for: left panel (200px) + minimal padding (20px)
         available_width = max(400, viewport_width - 220)
         
-        # Account for: compact header (~40px) + notes area (~40px) + title bar (~30px) + padding (20px)
-        available_height = max(300, viewport_height - 130)
+        # Account for: compact header (~40px) + notes area (~60px) + title bar (~30px) + spacing (~30px)
+        # Reserve more space for notes to ensure they're always visible
+        available_height = max(300, viewport_height - 160)
         
-        # Use 98% of available space - maximum real estate!
-        max_width = int(available_width * 0.98)
-        max_height = int(available_height * 0.98)
+        # Use 95% of available space for width, but be more conservative with height
+        max_width = int(available_width * 0.95)
+        max_height = int(available_height * 0.85)  # More conservative to ensure notes visibility
         
         # Adjust for multiple maps side by side
         if num_maps > 1:
@@ -555,11 +556,19 @@ class PoEMapsViewerFinal:
         width = int(map_data['width'] * scale)
         height = int(map_data['height'] * scale)
         
-        # Ensure reasonable minimums only
+        # Additional constraint: ensure height doesn't exceed a reasonable maximum
+        # to prevent tall images from pushing notes below fold
+        max_reasonable_height = max(250, int(viewport_height * 0.65))
+        if height > max_reasonable_height:
+            height = max_reasonable_height
+            # Recalculate width to maintain aspect ratio
+            width = int((height / map_data['height']) * map_data['width'])
+        
+        # Ensure reasonable minimums
         width = max(200, width)
         height = max(150, height)
         
-        print(f"Maximized map size: {width}x{height} (viewport: {viewport_width}x{viewport_height}, available: {available_width}x{available_height})")
+        print(f"Calculated map size: {width}x{height} (viewport: {viewport_width}x{viewport_height}, max_reasonable_height: {max_reasonable_height})")
         
         return width, height
 

@@ -1,6 +1,6 @@
 # PoE2 Maps Viewer
 
-A real-time overlay utility for Path of Exile 2 that automatically displays map layouts, optimal flasks, and best weapons based on your current zone and character level.
+A real-time utility for Path of Exile 2 that automatically displays map layouts, optimal flasks, and best weapons based on your current zone and character level. Choose between an overlay mode for single-monitor setups or a windowed mode for dual-monitor setups.
 
 ![PoE2 Maps Viewer](https://img.shields.io/badge/Game-Path%20of%20Exile%202-red) ![Python](https://img.shields.io/badge/Python-3.7+-blue) ![License](https://img.shields.io/badge/License-MIT-green)
 
@@ -57,25 +57,71 @@ A real-time overlay utility for Path of Exile 2 that automatically displays map 
    - Add map images (PNG/JPG) to each zone folder
 
 4. **Configure log file path** (if different from default)
-   - Open `poe_maps_viewer.py`
+   - Open `poe_campaign_layouts.py`
    - Modify line 20: `self.log_file_path = r"your\path\to\Client.txt"`
+   - **Note**: Not needed if using executables - configure via Settings window
 
 ### Running the Application
 
-#### Option 1: Python Script
-```bash
-python poe_maps_viewer.py
-```
+**Choose the version that works best for your setup:**
 
-#### Option 2: Batch File
+#### 🎯 **Overlay Mode** (Single Monitor)
+```bash
+python poe_campaign_layouts.py
+```
+- **Best for**: Single monitor setups
+- **Features**: Borderless overlay that renders on top of PoE2
+- **Benefits**: System tray integration, always-on-top, minimal interference with gameplay
+
+#### 🪟 **Windowed Mode** (Dual Monitor)
+```bash
+python poe_campaign_layouts_windowed.py
+```
+- **Best for**: Dual monitor setups or when you prefer a standalone window
+- **Features**: Full-featured windowed application with responsive UI
+- **Benefits**: Larger display area, better for detailed map viewing, resizable interface
+
+#### 📦 **Executable Releases** (No Python Required)
+
+Download pre-built executables from the [GitHub Releases](https://github.com/derek-etherton/PoE2-Map-Layout-Utility/releases) page:
+- **`PoE_Campaign_Layouts.exe`** - Overlay mode executable
+- **`PoE_Campaign_Layouts_Windowed.exe`** - Windowed mode executable
+
+Simply download and run - no Python installation needed!
+
+#### Option 3: Batch File
 ```bash
 ./run_viewer.bat
 ```
 
 ## ⚙️ Configuration
 
+### First-Time Setup
+
+**For both versions, you'll need to configure these settings on first launch:**
+
+1. **Set Log Path**:
+   - Click "Browse" to locate your PoE2 log file
+   - Common locations:
+     - `D:\Program Files (x86)\Grinding Gear Games\logs\Client.txt`
+     - `~\Documents\My Games\Path of Exile 2\Logs\Client.txt`
+
+2. **Select Weapon Type**:
+   - Choose your primary weapon type from the dropdown
+   - Options: Bow, Crossbow, Quarter Staff, Spear, One Hand Mace, Two Hand Mace
+
+3. **Set Your Level** (optional):
+   - Enter your current character level
+   - The app will auto-detect level changes from logs once running
+
+4. **Save Settings**:
+   - Click "Save Settings" to persist your configuration
+   - Settings are automatically loaded on subsequent launches
+
 ### Settings Window
-Access via system tray right-click → Settings, or when the main window is visible.
+
+**Overlay Mode**: Access via system tray right-click → Settings
+**Windowed Mode**: Expand the "Settings" section in the main window
 
 #### **Regex Filter**
 - Custom search pattern for in-game item filtering
@@ -106,8 +152,12 @@ poe-maps/
 ├── public/data/            # Game data files
 │   ├── flasks.json
 │   └── weapons.json
-├── settings.json           # Your saved preferences
-└── poe_maps_viewer.py     # Main application
+├── settings.json                    # Your saved preferences
+├── poe_campaign_layouts.py          # Overlay mode (single monitor)
+├── poe_campaign_layouts_windowed.py # Windowed mode (dual monitor)
+├── dist/                            # Pre-built executables
+│   ├── PoE_Campaign_Layouts.exe     # Overlay mode executable
+│   └── PoE_Campaign_Layouts_Windowed.exe # Windowed mode executable
 ```
 
 ## 🎯 How It Works
@@ -156,6 +206,28 @@ Searches for level-up messages in the format:
 - **Default**: `D:\Program Files (x86)\Grinding Gear Games\logs\Client.txt`
 - **Steam**: Usually in the same location, but may vary
 - **Custom install**: Update the path in `poe_maps_viewer.py` line 20
+
+## 🛠️ Building Executables
+
+If you want to build the executables yourself, use the provided build scripts:
+
+### Windows Batch Script
+```bash
+build.bat
+```
+
+### PowerShell Script
+```powershell
+.\build.ps1
+```
+
+Both scripts will:
+- Check and install PyInstaller if needed
+- Clean previous builds
+- Build both overlay and windowed mode executables
+- Display file sizes and completion status
+
+Executables will be created in the `dist/` folder.
 
 ## 🤝 Contributing
 
