@@ -451,7 +451,7 @@ class PoEMapsViewerFinal:
             # Don't clear or change anything - keep previous map displayed
 
     def calculate_map_size(self, map_data, num_maps):
-        """Calculate maximum map size while ensuring notes remain visible"""
+        """Calculate maximum map size to fill 100% of available space above notes footer"""
         try:
             # Get current viewport dimensions when needed
             viewport_width = dpg.get_viewport_client_width()
@@ -461,44 +461,36 @@ class PoEMapsViewerFinal:
             viewport_width = 1200
             viewport_height = 800
         
-        # Calculate maximum available space
-        # Account for: left panel (200px) + minimal padding (20px)
-        available_width = max(400, viewport_width - 220)
+        # Calculate available space for maps
+        # Account for: left panel (200px) + small padding (10px)
+        available_width = max(400, viewport_width - 210)
         
-        # Account for: compact header (~40px) + notes area (~60px) + title bar (~30px) + spacing (~30px)
-        # Reserve more space for notes to ensure they're always visible
-        available_height = max(300, viewport_height - 160)
+        # Account for: compact header (~40px) + notes footer (~40px) + title bar (~30px) + minimal spacing (~20px)
+        # Notes should be a fixed footer, maps get everything else
+        available_height = max(300, viewport_height - 130)
         
-        # Use 95% of available space for width, but be more conservative with height
-        max_width = int(available_width * 0.95)
-        max_height = int(available_height * 0.85)  # More conservative to ensure notes visibility
+        # Use 100% of available space for maps
+        max_width = available_width
+        max_height = available_height
         
         # Adjust for multiple maps side by side
         if num_maps > 1:
-            max_width = (max_width - (num_maps - 1) * 15) // num_maps  # Small gaps
+            max_width = (max_width - (num_maps - 1) * 10) // num_maps  # Small gaps between maps
         
         # Scale to fit while maintaining aspect ratio
         width_scale = max_width / map_data['width']
         height_scale = max_height / map_data['height']
         scale = min(width_scale, height_scale)
         
-        # Calculate final dimensions
+        # Calculate final dimensions - use maximum space possible
         width = int(map_data['width'] * scale)
         height = int(map_data['height'] * scale)
         
-        # Additional constraint: ensure height doesn't exceed a reasonable maximum
-        # to prevent tall images from pushing notes below fold
-        max_reasonable_height = max(250, int(viewport_height * 0.65))
-        if height > max_reasonable_height:
-            height = max_reasonable_height
-            # Recalculate width to maintain aspect ratio
-            width = int((height / map_data['height']) * map_data['width'])
-        
-        # Ensure reasonable minimums
+        # Ensure reasonable minimums only
         width = max(200, width)
         height = max(150, height)
         
-        print(f"Calculated map size: {width}x{height} (viewport: {viewport_width}x{viewport_height}, max_reasonable_height: {max_reasonable_height})")
+        print(f"Calculated map size: {width}x{height} (viewport: {viewport_width}x{viewport_height}, available: {available_width}x{available_height})")
         
         return width, height
 

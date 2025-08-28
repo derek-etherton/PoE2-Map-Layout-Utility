@@ -1,3 +1,5 @@
+![PoE2 Campaign Layouts Header](images/mausoleum-praetor.png)
+
 # PoE2 Campaign Layouts
 
 A real-time utility for Path of Exile 2 that automatically displays map layouts, optimal flasks, and best weapons based on your current zone and character level.
